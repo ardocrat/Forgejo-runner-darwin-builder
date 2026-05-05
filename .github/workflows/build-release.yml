@@ -1,5 +1,5 @@
 # This workflow:
-#  - builds and uploads a binary artifact for macOS amd64 (compatible with 10.15+)
+#  - builds and uploads a binary artifact for macOS arm64 (compatible with 11.0+)
 #  - tests act on macOS
 #  - releases the binary artifacts as a GitHub release
 
@@ -36,30 +36,30 @@ jobs:
         with:
           go-version-file: go.mod
 
-      - name: Build for macOS amd64
+      - name: Build for macOS arm64
         env:
           CGO_ENABLED: 1
           GOOS: darwin
-          GOARCH: amd64
+          GOARCH: arm64
         run: |
           go build \
             -ldflags "-s -w -X code.forgejo.org/forgejo/runner/v12/internal/pkg/ver.version=${{ inputs.tag }} \
-            -linkmode=external -extldflags=-mmacosx-version-min=10.15" \
-            -o forgejo-runner-darwin-amd64
+            -linkmode=external -extldflags=-mmacosx-version-min=11.0" \
+            -o forgejo-runner-darwin-arm64
 
       - name: Check Version Output
         run: |
-          VERSION_OUTPUT=$(./forgejo-runner-darwin-amd64 --version)
+          VERSION_OUTPUT=$(./forgejo-runner-darwin-arm64 --version)
           if [ "$VERSION_OUTPUT" != "forgejo-runner version ${{ inputs.tag }}" ]; then
             echo "Version mismatch: got $VERSION_OUTPUT expected forgejo-runner version ${{ inputs.tag }}"
             exit 1
           fi
-          otool -l ./forgejo-runner-darwin-amd64 | grep minos -A 3
+          otool -l ./forgejo-runner-darwin-arm64 | grep minos -A 3
 
       - uses: actions/upload-artifact@v4
         with:
-          name: forgejo-runner-darwin-amd64
-          path: forgejo-runner-darwin-amd64
+          name: forgejo-runner-darwin-arm64
+          path: forgejo-runner-darwin-arm64
 
   test-act:
     name: Run Act Tests on macOS

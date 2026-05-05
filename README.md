@@ -6,7 +6,7 @@
 [![Forgejo Version](https://img.shields.io/badge/Forgejo-1.22+-blue)](https://forgejo.org)
 [![macOS](https://img.shields.io/badge/Platform-macOS-blue)](https://github.com/rafntor/Forgejo-runner-darwin-builder)
 
-A macOS-compiled version of the Forgejo Runner, providing a pre-built binary for executing Forgejo Actions workflows on macOS systems (10.15+).
+A macOS-compiled version of the Forgejo Runner, providing a pre-built binary for executing Forgejo Actions workflows on macOS systems (11.0+).
 
 ## What is Forgejo?
 
@@ -44,10 +44,10 @@ It is a build of the official [Forgejo Runner source code](https://code.forgejo.
 ## Installation and Usage
 
 1. **Download the Binary**:
-    - Visit the [Releases page](https://github.com/rafntor/Forgejo-runner-darwin-builder/releases) to download the latest macOS executable (e.g., `forgejo-runner-darwin-amd64`).
+    - Visit the [Releases page](https://github.com/rafntor/Forgejo-runner-darwin-builder/releases) to download the latest macOS executable (e.g., `forgejo-runner-darwin-arm64`).
 
 2. **Make Executable**:
-    - Run `chmod +x forgejo-runner-darwin-amd64` to make the binary executable.
+    - Run `chmod +x forgejo-runner-darwin-arm64` to make the binary executable.
 
 3. **Configure the Runner**:
     - Follow the [official documentation](https://forgejo.org/docs/latest/admin/actions/runner-installation/) for runner configuration.
